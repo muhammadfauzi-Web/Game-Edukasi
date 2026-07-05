@@ -1,0 +1,123 @@
+workflows:
+  # ---------------------------------------------------------------------
+  # Workflow 1: Package/validate the PWA (www/) and produce a deployable
+  # zip artifact. Useful for static hosting, Netlify/Vercel drops, or as
+  # an input artifact for a later native-shell build.
+  # ---------------------------------------------------------------------
+  eduedukasi-pwa-package:
+    name: Edukasi - PWA Package
+    max_build_duration: 15
+    instance_type: linux_x2
+    environment:
+      vars:
+        APP_NAME: "Edukasi"
+      node: 20
+
+    triggering:
+      events:
+        - push
+        - tag
+      branch_patterns:
+        - pattern: "main"
+          include: true
+        - pattern: "release/*"
+          include: true
+      cancel_previous_builds: true
+
+    scripts:
+      - name: Validate required PWA files
+        script: |
+          set -e
+          echo "Validating www/ structure..."
+          test -f www/index.html
+          test -f www/manifest.json
+          test -f www/service-worker.js
+          test -f www/icon-192.png
+          test -f www/icon-512.png
+          test -f www/css/style.css
+          test -f www/js/app.js
+          test -d www/audio
+          test -f www/data/data.json
+          test -f www/audio/bgm.mp3
+          test -f www/audio/click.mp3
+          test -f www/audio/correct.mp3
+          test -f www/audio/wrong.mp3
+          test -f www/audio/finish.mp3
+          echo "All required files present (including audio assets)."
+
+      - name: Lint manifest.json and data.json
+        script: |
+          set -e
+          cat www/manifest.json | python3 -m json.tool > /dev/null
+          cat www/data/data.json | python3 -m json.tool > /dev/null
+          echo "manifest.json and data.json are valid JSON."
+
+      - name: Zip the www/ folder for deployment
+        script: |
+          set -e
+          mkdir -p build
+          cd www
+          zip -r ../build/eduedukasi-pwa.zip . -x "*.DS_Store"
+          cd ..
+          echo "Created build/eduedukasi-pwa.zip"
+
+    artifacts:
+      - build/eduedukasi-pwa.zip
+
+    publishing:
+      email:
+        recipients:
+          - fauzi@eduedukasi.com
+        notify:
+          success: true
+          failure: true
+
+  # ---------------------------------------------------------------------
+  # Workflow 2: Build the Android APK/AAB from the Cordova project
+  # (config.xml + www/). Requires cordova-android platform files to be
+  # committed or added via a prebuild step.
+  # ---------------------------------------------------------------------
+  eduedukasi-android:
+    name: Edukasi - Android Build
+    max_build_duration: 30
+    instance_type: linux_x2
+    environment:
+      vars:
+        PACKAGE_ID: "com.eduedukasi.anak"
+      node: 20
+      java: 17
+      android_signing:
+        - eduedukasi_keystore
+
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: "v*.*.*"
+          include: true
+      cancel_previous_builds: false
+
+    scripts:
+      - name: Install Cordova CLI
+        script: |
+          npm install -g cordova
+
+      - name: Add Android platform
+        script: |
+          cordova platform add android || true
+
+      - name: Build Android release
+        script: |
+          cordova build android --release -- --packageType=apk
+
+    artifacts:
+      - platforms/android/app/build/outputs/**/*.apk
+      - platforms/android/app/build/outputs/**/*.aab
+
+    publishing:
+      email:
+        recipients:
+          - fauzi@eduedukasi.com
+        notify:
+          success: true
+          failure: true
