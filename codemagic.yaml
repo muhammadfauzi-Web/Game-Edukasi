@@ -111,13 +111,12 @@ workflows:
           cordova build android --release -- --packageType=apk
 
     artifacts:
-      - platforms/android/app/build/outputs/**/*.apk
-      - platforms/android/app/build/outputs/**/*.aab
-
+      - '**/build/outputs/apk/release/*.aab'
+      - '**/build/outputs/apk/release/*.apk'
     publishing:
       email:
         recipients:
-          - fauzi@edukasi.com
+          - muhammadfauziarrasyid@gmail.com
         notify:
           success: true
           failure: true
