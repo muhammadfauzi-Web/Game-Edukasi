@@ -67,7 +67,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - fauzi@edukasi.com
+          - muhammadfauziarrasyid@gmail.com
         notify:
           success: true
           failure: true
@@ -87,8 +87,7 @@ workflows:
       node: 20
       java: 17
       android_signing:
-        - edukasi_keystore
-
+        - Muhammad Fauzi
     triggering:
       events:
         - tag
