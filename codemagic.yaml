@@ -4,7 +4,7 @@ workflows:
   # zip artifact. Useful for static hosting, Netlify/Vercel drops, or as
   # an input artifact for a later native-shell build.
   # ---------------------------------------------------------------------
-  eduedukasi-pwa-package:
+  edukasi-pwa-package:
     name: Edukasi - PWA Package
     max_build_duration: 15
     instance_type: linux_x2
@@ -57,17 +57,17 @@ workflows:
           set -e
           mkdir -p build
           cd www
-          zip -r ../build/eduedukasi-pwa.zip . -x "*.DS_Store"
+          zip -r ../build/edukasi-pwa.zip . -x "*.DS_Store"
           cd ..
-          echo "Created build/eduedukasi-pwa.zip"
+          echo "Created build/edukasi-pwa.zip"
 
     artifacts:
-      - build/eduedukasi-pwa.zip
+      - build/edukasi-pwa.zip
 
     publishing:
       email:
         recipients:
-          - fauzi@eduedukasi.com
+          - fauzi@edukasi.com
         notify:
           success: true
           failure: true
@@ -77,17 +77,17 @@ workflows:
   # (config.xml + www/). Requires cordova-android platform files to be
   # committed or added via a prebuild step.
   # ---------------------------------------------------------------------
-  eduedukasi-android:
+  edukasi-android:
     name: Edukasi - Android Build
     max_build_duration: 30
     instance_type: linux_x2
     environment:
       vars:
-        PACKAGE_ID: "com.eduedukasi.anak"
+        PACKAGE_ID: "com.edukasi.anak"
       node: 20
       java: 17
       android_signing:
-        - eduedukasi_keystore
+        - edukasi_keystore
 
     triggering:
       events:
@@ -117,7 +117,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - fauzi@eduedukasi.com
+          - fauzi@edukasi.com
         notify:
           success: true
           failure: true
