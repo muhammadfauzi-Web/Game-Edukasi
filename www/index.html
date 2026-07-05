@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Edukasi — Belajar Jadi Seru!</title>
+  <meta name="description" content="Aplikasi pembelajaran interaktif untuk anak-anak." />
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#FF6B6B" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Edukasi" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="bg-shapes" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <button id="btn-sound" type="button" class="icon-btn" aria-label="Suara">🔊</button>
+
+  <div class="app">
+
+    <main id="home-view" class="view is-active">
+      <header class="site-header">
+        <p class="brand"><span class="dot"></span> Edukasi</p>
+      </header>
+
+      <div class="mascot-wrap">
+        <img src="icon-512.png" alt="Maskot matahari ceria Edukasi" />
+      </div>
+
+      <h1 class="headline">Halo, Sahabat <span class="accent">Belajar</span>!</h1>
+      <p class="subhead">Yuk main sambil belajar hari ini ✨</p>
+
+      <section class="mission-card">
+        <p>
+          Misi kami adalah menemani petualangan belajarmu dengan cara yang seru,
+          penuh warna, dan menyenangkan setiap hari!
+        </p>
+      </section>
+
+      <div class="actions">
+        <button id="btn-start" type="button" class="btn btn-primary">
+          <span class="btn-icon">🚀</span> Mulai
+        </button>
+        <button id="btn-developer" type="button" class="btn btn-secondary">
+          <span class="btn-icon">👩‍💻</span> Pengembang
+        </button>
+      </div>
+
+      <footer class="site-footer">
+        © 2026 Muhammad Fauzi. All Rights Reserved.
+      </footer>
+    </main>
+
+    <section id="developer-view" class="view" aria-hidden="true">
+      <header class="site-header">
+        <p class="brand"><span class="dot"></span> Edukasi</p>
+      </header>
+
+      <div class="dev-card">
+        <div class="dev-avatar">👨‍💻</div>
+        <h2>Tentang Pengembang</h2>
+        <p class="dev-name">Pengembang Aplikasi: Muhammad Fauzi</p>
+        <p class="dev-role">Membangun Edukasi dengan penuh semangat</p>
+
+        <div class="dev-tags">
+          <span>PWA</span>
+          <span>Cordova</span>
+          <span>Ramah Anak</span>
+        </div>
+
+        <button id="btn-back" type="button" class="btn btn-back">
+          <span class="btn-icon">←</span> Kembali
+        </button>
+      </div>
+
+      <footer class="site-footer">
+        © 2026 Muhammad Fauzi. All Rights Reserved.
+      </footer>
+    </section>
+
+    <section id="menu-view" class="view" aria-hidden="true">
+      <header class="site-header">
+        <p class="brand"><span class="dot"></span> Edukasi</p>
+      </header>
+
+      <h1 class="headline" id="menu-greeting"></h1>
+      <p class="subhead" id="menu-subtitle"></p>
+
+      <div class="menu-grid" id="menu-grid"></div>
+
+      <div class="actions">
+        <button id="btn-menu-back" type="button" class="btn btn-back">
+          <span class="btn-icon">←</span> <span id="menu-back-label">Kembali</span>
+        </button>
+      </div>
+
+      <footer class="site-footer" id="menu-footer"></footer>
+    </section>
+
+    <section id="game-view" class="view" aria-hidden="true">
+      <header class="site-header">
+        <p class="brand"><span class="dot"></span> Edukasi</p>
+      </header>
+
+      <div class="game-topbar">
+        <button id="btn-game-back" type="button" class="btn btn-back btn-sm">
+          <span class="btn-icon">←</span> <span id="game-back-label">Kembali</span>
+        </button>
+        <span class="game-score" id="game-score"></span>
+      </div>
+
+      <h2 class="game-title" id="game-title"></h2>
+      <p class="subhead" id="game-instruction"></p>
+
+      <div class="question-box" id="game-question-area"></div>
+      <div class="options-grid" id="game-options"></div>
+
+      <div class="finish-box" id="game-finish" hidden>
+        <p class="finish-message" id="game-finish-message"></p>
+        <p class="finish-score" id="game-finish-score"></p>
+        <div class="actions">
+          <button id="btn-game-again" type="button" class="btn btn-primary">
+            <span class="btn-icon">🔁</span> <span id="game-again-label">Main Lagi</span>
+          </button>
+          <button id="btn-game-finish-back" type="button" class="btn btn-back">
+            <span class="btn-icon">←</span> <span id="game-finish-back-label">Kembali</span>
+          </button>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        © 2026 Muhammad Fauzi. All Rights Reserved.
+      </footer>
+    </section>
+
+    <section id="creative-view" class="view" aria-hidden="true">
+      <header class="site-header">
+        <p class="brand"><span class="dot"></span> Edukasi</p>
+      </header>
+
+      <div class="game-topbar">
+        <button id="btn-creative-back" type="button" class="btn btn-back btn-sm">
+          <span class="btn-icon">←</span> <span id="creative-back-label">Kembali</span>
+        </button>
+      </div>
+
+      <h2 class="game-title" id="creative-title"></h2>
+      <p class="subhead" id="creative-instruction"></p>
+
+      <div class="creative-canvas-wrap">
+        <canvas id="creative-canvas"></canvas>
+      </div>
+
+      <div class="swatch-row" id="creative-colors"></div>
+      <div class="brush-row" id="creative-brushes"></div>
+
+      <div class="creative-actions">
+        <button id="btn-creative-clear" type="button" class="btn btn-secondary btn-sm"></button>
+        <button id="btn-creative-save" type="button" class="btn btn-primary btn-sm"></button>
+      </div>
+      
+      <footer class="site-footer">
+        © 2026 Muhammad Fauzi. All Rights Reserved.
+      </footer>
+    </section>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

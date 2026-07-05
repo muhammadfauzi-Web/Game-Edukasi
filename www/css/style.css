@@ -1,0 +1,720 @@
+/* =========================================================
+   Edukasi — Stylesheet
+   Palette: pastel cyan (#4ECDC4), bubblegum pink (#FF6B6B),
+            sunshine yellow (#FFD166), cream (#FFF9EE), ink (#3A3A5C)
+   Type: "Baloo 2" (display, playful/rounded) + "Nunito" (body, friendly)
+   ========================================================= */
+
+:root {
+  --cyan: #4ecdc4;
+  --cyan-deep: #2fb8ae;
+  --pink: #ff6b6b;
+  --pink-deep: #e94f4f;
+  --yellow: #ffd166;
+  --yellow-deep: #f4b93e;
+  --cream: #fff9ee;
+  --ink: #3a3a5c;
+  --ink-soft: #6b6b8d;
+  --white: #ffffff;
+
+  --radius-lg: 32px;
+  --radius-md: 22px;
+  --radius-sm: 14px;
+
+  --shadow-soft: 0 10px 25px rgba(58, 58, 92, 0.12);
+  --shadow-pop: 0 8px 0 rgba(0, 0, 0, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Nunito", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(160deg, #fff9ee 0%, #eafffb 45%, #ffeef0 100%);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+.brand {
+  font-family: "Baloo 2", "Nunito", system-ui, sans-serif;
+}
+
+/* ---------- floating background shapes (ambient, decorative) ---------- */
+.bg-shapes {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-shapes span {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.35;
+  filter: blur(1px);
+  animation: float 9s ease-in-out infinite;
+}
+
+.bg-shapes span:nth-child(1) {
+  width: 90px;
+  height: 90px;
+  background: var(--yellow);
+  top: 8%;
+  left: 6%;
+  animation-delay: 0s;
+}
+.bg-shapes span:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  background: var(--pink);
+  top: 68%;
+  left: 12%;
+  animation-delay: 1.2s;
+}
+.bg-shapes span:nth-child(3) {
+  width: 130px;
+  height: 130px;
+  background: var(--cyan);
+  top: 20%;
+  right: 8%;
+  animation-delay: 2s;
+}
+.bg-shapes span:nth-child(4) {
+  width: 70px;
+  height: 70px;
+  background: var(--pink);
+  bottom: 10%;
+  right: 14%;
+  animation-delay: 0.6s;
+}
+.bg-shapes span:nth-child(5) {
+  width: 45px;
+  height: 45px;
+  background: var(--yellow);
+  bottom: 22%;
+  left: 42%;
+  animation-delay: 1.8s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-22px) scale(1.06); }
+}
+
+/* ---------- app shell ---------- */
+.app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 28px 20px 24px;
+}
+
+/* ---------- view switching (handled via JS toggling .is-active) ---------- */
+.view {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+  animation: viewIn 0.35s ease both;
+}
+
+.view.is-active {
+  display: flex;
+}
+
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view,
+  .bg-shapes span,
+  .mascot-wrap,
+  .btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- header ---------- */
+.site-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  letter-spacing: 0.5px;
+  margin: 0 0 18px;
+}
+
+.brand .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: inline-block;
+}
+
+/* ---------- mascot / signature element ---------- */
+.mascot-wrap {
+  width: 168px;
+  height: 168px;
+  margin: 4px auto 18px;
+  animation: bob 3.2s ease-in-out infinite;
+  filter: drop-shadow(0 12px 18px rgba(255, 107, 107, 0.28));
+}
+
+.mascot-wrap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* ---------- headline & mission text ---------- */
+.headline {
+  text-align: center;
+  font-size: clamp(1.8rem, 7vw, 2.4rem);
+  line-height: 1.15;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+
+.headline .accent {
+  color: var(--pink);
+  position: relative;
+}
+
+.subhead {
+  text-align: center;
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 1.02rem;
+  margin: 0 0 20px;
+}
+
+.mission-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-soft);
+  border: 3px solid #ffe9c7;
+  position: relative;
+  margin-bottom: 26px;
+}
+
+.mission-card::before {
+  content: "✦";
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--yellow);
+  color: var(--white);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+}
+
+.mission-card p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ---------- buttons ---------- */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font-family: "Baloo 2", "Nunito", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  width: 100%;
+}
+
+.btn:active {
+  transform: translateY(4px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-deep) 100%);
+  color: var(--white);
+  box-shadow: var(--shadow-pop);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--cyan-deep);
+  border: 3px solid var(--cyan);
+  box-shadow: 0 6px 0 rgba(78, 205, 196, 0.25);
+}
+
+.btn-secondary:hover {
+  background: #f2fffd;
+}
+
+.btn-back {
+  background: var(--yellow);
+  color: #6b4a00;
+  box-shadow: 0 6px 0 rgba(244, 185, 62, 0.45);
+  align-self: flex-start;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* ---------- developer view ---------- */
+.dev-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 30px 26px;
+  box-shadow: var(--shadow-soft);
+  border: 3px solid #cdeeeb;
+  text-align: center;
+  margin: auto 0;
+}
+
+.dev-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--white);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+}
+
+.dev-card h2 {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+  color: var(--ink);
+}
+
+.dev-card .dev-name {
+  font-weight: 800;
+  color: var(--pink-deep);
+  font-size: 1.15rem;
+  margin: 0 0 4px;
+}
+
+.dev-card .dev-role {
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin: 0 0 22px;
+}
+
+.dev-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.dev-tags span {
+  background: var(--cream);
+  border: 2px solid var(--yellow);
+  color: #8a6100;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+/* ---------- footer ---------- */
+.site-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  padding-top: 22px;
+}
+
+/* ---------- small screens polish ---------- */
+@media (max-width: 360px) {
+  .app { padding: 20px 16px 18px; }
+  .mascot-wrap { width: 140px; height: 140px; }
+  .mission-card { padding: 18px 18px; }
+}
+
+/* =========================================================
+   Konten dinamis dari data.json — menu, game kuis, studio kreatif.
+   Semua bagian di bawah ini murni tambahan (tidak mengubah aturan
+   di atas) dan tetap memakai palet warna & token yang sudah ada.
+   ========================================================= */
+
+/* ---------- global sound toggle ---------- */
+.icon-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-btn:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* ---------- small button variant (doesn't override .btn) ---------- */
+.btn-sm {
+  width: auto;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+}
+
+/* ---------- menu view ---------- */
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 6px 0 22px;
+}
+
+.menu-card {
+  appearance: none;
+  border: 3px solid #ffe9c7;
+  cursor: pointer;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  font-family: "Nunito", sans-serif;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.menu-card:active {
+  transform: translateY(3px);
+}
+
+.menu-card-icon {
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.menu-card-title {
+  font-family: "Baloo 2", "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.menu-card-subtitle {
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.menu-card-cta {
+  margin-top: 8px;
+  background: var(--yellow);
+  color: #6b4a00;
+  font-weight: 800;
+  font-size: 0.78rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+/* ---------- game view (kuis huruf / angka / buah) ---------- */
+.game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.game-score {
+  font-family: "Baloo 2", "Nunito", sans-serif;
+  font-weight: 800;
+  color: var(--pink-deep);
+  background: var(--white);
+  border: 2px solid var(--yellow);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.game-title {
+  text-align: center;
+  margin: 4px 0 2px;
+  color: var(--ink);
+}
+
+.question-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 10px 0 20px;
+}
+
+.letter-badge {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--pink) 100%);
+  color: var(--white);
+  font-family: "Baloo 2", sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-soft);
+}
+
+.question-instruction {
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin: 0;
+}
+
+.count-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 3px solid #ffe9c7;
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.count-emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.option-btn {
+  appearance: none;
+  cursor: pointer;
+  border: 3px solid #cdeeeb;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px 10px;
+  font-family: "Baloo 2", "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
+  box-shadow: 0 6px 0 rgba(78, 205, 196, 0.2);
+  transition: transform 0.12s ease;
+}
+
+.option-btn:active {
+  transform: translateY(3px);
+}
+
+.option-btn:disabled {
+  cursor: default;
+}
+
+.option-btn.is-correct {
+  background: #e8fbe9;
+  border-color: #8ce99a;
+  color: #2f8f3d;
+}
+
+.option-btn.is-wrong {
+  background: #ffefef;
+  border-color: var(--pink);
+  color: var(--pink-deep);
+}
+
+/* ---------- finish screen (shared by all quiz games) ---------- */
+.finish-box {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.finish-message {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--ink);
+  margin: 10px 0 6px;
+}
+
+.finish-score {
+  font-weight: 800;
+  color: var(--pink-deep);
+  margin: 0 0 18px;
+}
+
+/* ---------- creative studio ---------- */
+.creative-canvas-wrap {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 3px solid #cdeeeb;
+  box-shadow: var(--shadow-soft);
+  padding: 10px;
+  margin: 8px 0 16px;
+}
+
+#creative-canvas {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.swatch-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px #e5e5ef;
+  cursor: pointer;
+  padding: 0;
+}
+
+.swatch.is-active {
+  box-shadow: 0 0 0 3px var(--ink);
+}
+
+.brush-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.brush-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid #cdeeeb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.brush-btn span {
+  display: block;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.brush-btn.is-active {
+  border-color: var(--pink);
+}
+
+.creative-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.creative-actions .btn {
+  flex: 1;
+}
+
+/* ---------- responsive tweaks for the new components ---------- */
+@media (max-width: 360px) {
+  .menu-grid { gap: 10px; }
+  .menu-card { padding: 14px 10px; }
+  .letter-badge { width: 100px; height: 100px; font-size: 2.6rem; }
+}

@@ -1,0 +1,193 @@
+{
+  "appTitle": "Taman Ceria",
+  "splash": {
+    "title": "Taman Ceria",
+    "subtitle": "Belajar Sambil Bermain 🌈",
+    "buttonText": "▶️ START"
+  },
+  "menu": {
+    "greeting": "Halo, Sahabat Kecil! 👋",
+    "subtitle": "Yuk pilih petualangan seru hari ini",
+    "footerNote": "Didampingi Ayah & Bunda ya 💛",
+    "cards": [
+      {
+        "id": "huruf",
+        "theme": "huruf",
+        "icon": "📚",
+        "title": "Petualangan Huruf & Kata",
+        "subtitle": "Kenali huruf dan kata baru",
+        "cta": "Ayo Main!"
+      },
+      {
+        "id": "angka",
+        "theme": "angka",
+        "icon": "🔢",
+        "title": "Dunia Angka",
+        "subtitle": "Asyiknya belajar berhitung",
+        "cta": "Ayo Main!"
+      },
+      {
+        "id": "kreatif",
+        "theme": "kreatif",
+        "icon": "🎨",
+        "title": "Studio Kreatif",
+        "subtitle": "Menggambar & mewarnai bebas",
+        "cta": "Ayo Main!"
+      },
+      {
+        "id": "buah",
+        "theme": "buah",
+        "icon": "🍎",
+        "title": "Pilih Buah",
+        "subtitle": "Belajar mengenal buah-buahan",
+        "cta": "Ayo Main!"
+      }
+    ]
+  },
+  "letterGame": {
+    "title": "Petualangan Huruf & Kata",
+    "icon": "📚",
+    "instruction": "Tap gambar mana yang namanya diawali huruf ini!",
+    "finishMessage": "Hebat! Kamu jago mengenal huruf! 🎉",
+    "questions": [
+      {
+        "letter": "A",
+        "options": [
+          { "emoji": "🍎", "label": "Apel", "correct": true },
+          { "emoji": "⚽", "label": "Bola", "correct": false },
+          { "emoji": "🐱", "label": "Kucing", "correct": false },
+          { "emoji": "🐰", "label": "kelinci", "correct": false }
+        ]
+      },
+      {
+        "letter": "B",
+        "options": [
+          { "emoji": "🐟", "label": "Ikan", "correct": false },
+          { "emoji": "⚽", "label": "Bola", "correct": true },
+          { "emoji": "🎩", "label": "Topi", "correct": false },
+          { "emoji": "✈️", "label": "Pesawat", "correct": false }
+        ]
+      },
+      {
+        "letter": "I",
+        "options": [
+          { "emoji": "🍎", "label": "Apel", "correct": false },
+          { "emoji": "🪑", "label": "Kursi", "correct": false },
+          { "emoji": "🐟", "label": "Ikan", "correct": true },
+          { "emoji": "⚽", "label": "Bola", "correct": false }
+        ]
+      },
+      {
+        "letter": "K",
+        "options": [
+          { "emoji": "🐱", "label": "Kucing", "correct": true },
+          { "emoji": "⚽", "label": "Bola", "correct": false },
+          { "emoji": "🏠", "label": "Rumah", "correct": false },
+          { "emoji": "🍎", "label": "Apel", "correct": false }
+        ]
+      },
+      {
+        "letter": "G",
+        "options": [
+          { "emoji": "🐘", "label": "Gajah", "correct": true },
+          { "emoji": "🐓", "label": "Ayam", "correct": false },
+          { "emoji": "🐀", "label": "Tikus", "correct": false },
+          { "emoji": "🏠", "label": "Rumah", "correct": false }
+        ]
+      },
+      {
+        "letter": "K",
+        "options": [
+          { "emoji": "🐟", "label": "Ikan", "correct": false },
+          { "emoji": "🪑", "label": "Kursi", "correct": true },
+          { "emoji": "🎩", "label": "Topi", "correct": false },
+          { "emoji": "🏠", "label": "Rumah", "correct": false }
+        ]
+      }
+    ]
+  },
+  "fruitGame": {
+    "title": "Pilih Buah",
+    "finishMessage": "Keren! Kamu jago memilih buah! ",
+    "questions": [
+      {
+        "instruction": "Yang Mana Buah Apel 🍎 ",
+        "options": [
+          { "emoji": "🍎", "name": "Apel", "correct": true },
+          { "emoji": "🍌", "name": "Pisang", "correct": false },
+          { "emoji": "🍉", "name": "Semangka", "correct": false },
+          { "emoji": "🍇", "name": "Anggur", "correct": false }
+        ]
+      },
+      {
+        "instruction": "Yang Mana Buah Pisang 🍌",
+        "options": [
+          { "emoji": "🍉", "name": "Semangka", "correct": false },
+          { "emoji": "🍌", "name": "Pisang", "correct": true },
+          { "emoji": "🍒", "name": "Ceri", "correct": false },
+          { "emoji": "🍇", "name": "Anggur", "correct": false }
+        ]
+      },
+      {
+        "instruction": "Yang Mana Buah Strawberry 🍓",
+        "options": [
+          { "emoji": "🍇", "name": "Anggur", "correct": false },
+          { "emoji": "🍓", "name": "Strawberry", "correct": true },
+          { "emoji": "🍒", "name": "Ceri", "correct": false },
+          { "emoji": "🥑", "name": "Alpukat", "correct": false }
+        ]
+      },
+      {
+        "instruction": "Yang Mana Buah Semangka 🍉",
+        "options": [
+          { "emoji": "🍇", "name": "Anggur", "correct": false },
+          { "emoji": "🍉", "name": "Semangka", "correct": true },
+          { "emoji": "🍒", "name": "Ceri", "correct": false },
+          { "emoji": "🥑", "name": "Alpukat", "correct": false }
+        ]
+      },
+      {
+        "instruction": "Yang Mana Buah Jeruk 🍊",
+        "options": [
+          { "emoji": "🍊", "name": "Jeruk", "correct": true },
+          { "emoji": "🥑", "name": "Alpukat", "correct": false },
+          { "emoji": "🍋", "name": "Mangga", "correct": false },
+          { "emoji": "🍒", "name": "Ceri", "correct": false }
+        ]
+      }
+    ]
+  },
+  "numberGame": {
+    "title": "Dunia Angka",
+    "icon": "🔢",
+    "instruction": "Hitung gambarnya, lalu tap angka yang tepat!",
+    "finishMessage": "Keren! Kamu jago berhitung! 🎉",
+    "questions": [
+      { "emoji": "🍎", "count": 3, "options": [2, 3, 5] },
+      { "emoji": "⭐", "count": 5, "options": [4, 5, 7] },
+      { "emoji": "🎈", "count": 7, "options": [6, 7, 9] },
+      { "emoji": "🐟", "count": 2, "options": [1, 2, 3] },
+      { "emoji": "🌸", "count": 9, "options": [8, 9, 10] }
+    ]
+  },
+  "creativeStudio": {
+    "title": "Studio Kreatif",
+    "icon": "🎨",
+    "instruction": "Pilih warna dan ukuran kuas, lalu mulai menggambar!",
+    "colors": [
+      "#FF6B9D", "#FFA69E", "#FFD972", "#8CE99A",
+      "#66D9E8", "#8C9EFF", "#C589E8", "#4A4A68",
+      "#FFFFFF"
+    ],
+    "brushSizes": [4, 10, 18, 28],
+    "clearLabel": "🗑️ Hapus",
+    "saveLabel": "💾 Simpan Gambar"
+  },
+  "ui": {
+    "backLabel": "⬅️ Menu Utama",
+    "scoreLabel": "Skor",
+    "playAgainLabel": "🔁 Main Lagi",
+    "soundOnLabel": "🔊",
+    "soundOffLabel": "🔇"
+  }
+}
