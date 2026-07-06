@@ -121,10 +121,22 @@
     if (subhead && data.splash && data.splash.subtitle) {
       subhead.textContent = data.splash.subtitle;
     }
-    var startBtn = byId("btn-start");
-    if (startBtn && data.splash && data.splash.buttonText) {
-      startBtn.textContent = data.splash.buttonText;
+    // Task 3 fix: dulu startBtn.textContent = ... menghapus total elemen anak
+    // <span class="btn-icon">🚀</span>, membuatnya jadi dead markup.
+    // Sekarang hanya menulis ke span#btn-start-label (dibuat di index.html),
+    // sehingga ikon 🚀 tetap dipertahankan dan dirender berdampingan dengan teks JSON.
+    if (data.splash && data.splash.buttonText) {
+      setText("btn-start-label", data.splash.buttonText);
     }
+  }
+
+  // ---- Developer view (Task 2: selaraskan btn-back agar data-driven) ----
+  function renderDeveloperView(data) {
+    // Tombol ini kembali ke home-view, aksi yang sama persis dengan
+    // btn-menu-back, sehingga kita pakai field JSON yang sama (ui.backLabel)
+    // agar tetap satu sumber kebenaran dan konsisten dengan pola tombol
+    // kembali lainnya, alih-alih menuliskan teks statis di HTML.
+    setText("btn-back-label", (data.ui && data.ui.backLabel) || "Kembali");
   }
 
   // ---- Menu view ----
@@ -472,11 +484,43 @@
 
   // ---- Load data.json and boot the app ----
   function loadData() {
+    // Task 5: bungkus proses fetch dengan penanganan error yang solid.
+    // Kegagalan (offline / jaringan bermasalah / JSON rusak) akan ditangkap
+    // di .catch() pada pemanggil (lihat init()), bukan dibiarkan diam-diam
+    // hanya berupa console.warn seperti sebelumnya.
     return fetch("./data/data.json", { cache: "no-cache" })
       .then(function (res) {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
       });
+  }
+
+  // Task 5: UI fallback sederhana ketika data.json gagal dimuat.
+  // Dibuat murni via JS + inline style supaya tidak menyentuh style.css
+  // (menjaga styling global lain tetap utuh, sesuai aturan proyek).
+  function showDataLoadErrorBanner() {
+    if (byId("data-load-error-banner")) return; // jangan duplikat jika dipanggil lagi
+    var banner = document.createElement("div");
+    banner.id = "data-load-error-banner";
+    banner.setAttribute("role", "alert");
+    banner.style.cssText = [
+      "position:fixed",
+      "top:0",
+      "left:0",
+      "right:0",
+      "z-index:9999",
+      "background:#ffe0e0",
+      "color:#7a1f1f",
+      "padding:12px 16px",
+      "text-align:center",
+      "font-family:sans-serif",
+      "font-weight:700",
+      "font-size:14px",
+      "box-shadow:0 2px 6px rgba(0,0,0,0.15)"
+    ].join(";");
+    banner.textContent =
+      "⚠️ Gagal memuat data. Silakan periksa koneksi internet Anda atau muat ulang halaman.";
+    document.body.appendChild(banner);
   }
 
   function init() {
@@ -503,6 +547,8 @@
     if (devBtn) {
       devBtn.addEventListener("click", function () {
         playSound("click");
+        // Task 4: pause BGM saat masuk developer-view supaya tidak mengganggu.
+        bgmAudio.pause();
         showView("developer-view");
       });
     }
@@ -511,6 +557,11 @@
       backBtn.addEventListener("click", function () {
         playSound("click");
         showView("home-view");
+        // Task 4: saat kembali ke menu utama, lanjutkan BGM lagi
+        // hanya jika status toggle suara sedang tidak dimute.
+        if (!isMuted) {
+          playSound("bgm");
+        }
       });
     }
 
@@ -567,11 +618,14 @@
       .then(function (data) {
         DATA = data;
         renderSplash(data);
+        renderDeveloperView(data);
         renderMenu(data);
         updateSoundButton();
       })
       .catch(function (err) {
+        // Task 5: jangan biarkan aplikasi macet/blank tanpa info ke pengguna.
         console.warn("Edukasi: gagal memuat data.json", err);
+        showDataLoadErrorBanner();
       });
   }
 

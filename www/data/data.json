@@ -1,8 +1,6 @@
 {
   "appTitle": "Taman Ceria",
   "splash": {
-    "title": "Taman Ceria",
-    "subtitle": "Belajar Sambil Bermain 🌈",
     "buttonText": "▶️ START"
   },
   "menu": {
@@ -163,11 +161,11 @@
     "instruction": "Hitung gambarnya, lalu tap angka yang tepat!",
     "finishMessage": "Keren! Kamu jago berhitung! 🎉",
     "questions": [
-      { "emoji": "🍎", "count": 3, "options": [2, 3, 5] },
-      { "emoji": "⭐", "count": 5, "options": [4, 5, 7] },
-      { "emoji": "🎈", "count": 7, "options": [6, 7, 9] },
-      { "emoji": "🐟", "count": 2, "options": [1, 2, 3] },
-      { "emoji": "🌸", "count": 9, "options": [8, 9, 10] }
+      { "emoji": "🍎", "count": 3, "options": [2, 3, 5, 7] },
+      { "emoji": "⭐", "count": 5, "options": [4, 5, 7, 1] },
+      { "emoji": "🎈", "count": 6, "options": [6, 7, 9, 3] },
+      { "emoji": "🐟", "count": 2, "options": [1, 2, 3, 7] },
+      { "emoji": "🌸", "count": 4, "options": [8, 9, 4, 6] }
     ]
   },
   "creativeStudio": {

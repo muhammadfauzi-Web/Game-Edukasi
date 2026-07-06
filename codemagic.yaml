@@ -74,8 +74,6 @@ workflows:
 
   # ---------------------------------------------------------------------
   # Workflow 2: Build the Android APK/AAB from the Cordova project
-  # (config.xml + www/). Requires cordova-android platform files to be
-  # committed or added via a prebuild step.
   # ---------------------------------------------------------------------
   edukasi-android:
     name: Edukasi - Android Build
@@ -99,19 +97,28 @@ workflows:
     scripts:
       - name: Install Cordova CLI
         script: |
-          npm install -g cordova
+          npm install -g cordova@13.0.0
 
-      - name: Add Android platform
+      - name: Setup and Build Android App
         script: |
-          cordova platform add android || true
-
-      - name: Build Android release
-        script: |
+          set -e
+          cordova create lokasi_build com.edukasi.anak "edukasi"
+          cp config.xml lokasi_build/config.xml
+          rm -rf lokasi_build/www
+          cp -R www lokasi_build/www
+          
+          # Masuk ke direktori build untuk eksekusi platform
+          cd lokasi_build
+          npm install cordova-android@13.0.0 --no-save
+          cordova platform add android --nosave
+          
+          # Jalankan build rilis di dalam direktori lokasi_build
           cordova build android --release -- --packageType=apk
 
     artifacts:
       - '**/build/outputs/apk/release/*.aab'
       - '**/build/outputs/apk/release/*.apk'
+
     publishing:
       email:
         recipients:
