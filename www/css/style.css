@@ -134,6 +134,49 @@ h3,
   animation: viewIn 0.35s ease both;
 }
 
+.donation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: var(--white);
+  border: 3px dashed var(--cyan); /* Garis putus-putus comel berwana cyan */
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin: 10px 0 20px 0;
+  box-shadow: var(--shadow-soft);
+}
+
+.donation-text {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+.btn-saweria {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #faae2b; /* Warna oren-kuning ikonik Saweria */
+  color: var(--white);
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 10px 20px;
+  border-radius: 999px; /* Butang berbentuk bujur penuh */
+  text-decoration: none;
+  box-shadow: 0 4px 0 #c98516; /* Kesan pop-up 3D bawah butang */
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-saweria:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #c98516;
+}
+
+
 .view.is-active {
   display: flex;
 }
