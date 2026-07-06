@@ -184,9 +184,9 @@
     "saveLabel": "💾 Simpan Gambar"
   },
   "ui": {
-    "backLabel": "⬅️ Menu Utama",
+    "backLabel": "Menu Utama",
     "scoreLabel": "Skor",
-    "playAgainLabel": "🔁 Main Lagi",
+    "playAgainLabel": "Main Lagi",
     "soundOnLabel": "🔊",
     "soundOffLabel": "🔇"
   }
