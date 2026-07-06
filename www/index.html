@@ -52,8 +52,10 @@
       </section>
 
       <div class="actions">
+        <!-- Task 3: teks dipisah ke span#btn-start-label sehingga JS bisa
+             mengganti teksnya saja tanpa menghapus <span class="btn-icon">🚀</span> -->
         <button id="btn-start" type="button" class="btn btn-primary">
-          <span class="btn-icon">🚀</span> Mulai
+          <span class="btn-icon">🚀</span> <span id="btn-start-label">Mulai</span>
         </button>
         <button id="btn-developer" type="button" class="btn btn-secondary">
           <span class="btn-icon">👩‍💻</span> Pengembang
@@ -82,8 +84,11 @@
           <span>Ramah Anak</span>
         </div>
 
+        <!-- Task 2: ikon "←" tetap statis (single source of truth untuk ikon),
+             teks dipisah ke span#btn-back-label agar bisa diisi dari data.json
+             tanpa menghapus ikon (pola yang sama dipakai btn-menu-back, dst). -->
         <button id="btn-back" type="button" class="btn btn-back">
-          <span class="btn-icon">←</span> Kembali
+          <span class="btn-icon">←</span> <span id="btn-back-label">Kembali</span>
         </button>
       </div>
 
@@ -101,7 +106,12 @@
       <p class="subhead" id="menu-subtitle"></p>
 
       <div class="menu-grid" id="menu-grid"></div>
-
+      <div class="donation-container">
+        <p class="donation-text">Aplikasi ini 100% gratis dan bebas iklan demi kenyamanan belajar si kecil. Jika Anda merasa terbantu, yuk dukung pengembangan game ini melalui Saweria: </p>
+        <a href="https://saweria.co/fauziarrasyid23" target="_blank" class="btn-saweria">
+          ☕ Dukung Kami di Saweria
+        </a>
+      </div>
       <div class="actions">
         <button id="btn-menu-back" type="button" class="btn btn-back">
           <span class="btn-icon">←</span> <span id="menu-back-label">Kembali</span>
