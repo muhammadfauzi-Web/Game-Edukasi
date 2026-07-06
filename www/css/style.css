@@ -462,6 +462,7 @@ h3,
   gap: 6px;
   font-family: "Nunito", sans-serif;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
+  height: 100%;
 }
 
 .menu-card:active {
@@ -495,6 +496,7 @@ h3,
   font-size: 0.78rem;
   padding: 6px 14px;
   border-radius: 999px;
+  margin-bottom: auto;
 }
 
 /* ---------- game view (kuis huruf / angka / buah) ---------- */
